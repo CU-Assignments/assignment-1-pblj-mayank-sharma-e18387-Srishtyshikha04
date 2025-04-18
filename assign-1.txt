@@ -1,0 +1,126 @@
+Problem 1: String Analysis
+import java.util.Scanner;
+
+public class StringAnalysis {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        int vowels = 0, consonants = 0, digits = 0, specialChars = 0;
+        input = input.toLowerCase();
+
+        for (char ch : input.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                if ("aeiou".indexOf(ch) != -1) vowels++;
+                else consonants++;
+            } else if (Character.isDigit(ch)) {
+                digits++;
+            } else if (!Character.isWhitespace(ch)) {
+                specialChars++;
+            }
+        }
+
+        System.out.println("\nVowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+        System.out.println("Digits: " + digits);
+        System.out.println("Special Characters: " + specialChars);
+    }
+}
+
+Problem 2: Matrix Operations
+import java.util.Scanner;
+
+public class MatrixOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[][] matrix1 = new int[2][2];
+        int[][] matrix2 = new int[2][2];
+        int[][] result = new int[2][2];
+
+        System.out.println("Enter elements for Matrix 1:");
+        for (int i = 0; i < 2; i++)
+            for (int j = 0; j < 2; j++)
+                matrix1[i][j] = sc.nextInt();
+
+        System.out.println("Enter elements for Matrix 2:");
+        for (int i = 0; i < 2; i++)
+            for (int j = 0; j < 2; j++)
+                matrix2[i][j] = sc.nextInt();
+
+        // Addition
+        System.out.println("\nAddition:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                result[i][j] = matrix1[i][j] + matrix2[i][j];
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Subtraction
+        System.out.println("\nSubtraction:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                result[i][j] = matrix1[i][j] - matrix2[i][j];
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Multiplication
+        System.out.println("\nMultiplication:");
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                result[i][j] = 0;
+                for (int k = 0; k < 2; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+                System.out.print(result[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+Problem 3: Basic Banking System
+class BankAccount {
+    private String name;
+    private int accountNumber;
+    private double balance;
+
+    public BankAccount(String name, int accountNumber, double initialBalance) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit Successful! Current Balance: " + balance);
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawal Successful! Current Balance: " + balance);
+        } else {
+            System.out.println("Error: Insufficient funds. Current Balance: " + balance);
+        }
+    }
+}
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        // Sample input
+        BankAccount account = new BankAccount("John Doe", 12345, 1000);
+
+        account.deposit(500);
+        account.withdraw(2000);
+    }
+}
